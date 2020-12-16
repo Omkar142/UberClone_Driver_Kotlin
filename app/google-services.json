@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "1080008763529",
+    "firebase_url": "https://uberclone-b5cc2.firebaseio.com",
+    "project_id": "uberclone-b5cc2",
+    "storage_bucket": "uberclone-b5cc2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1080008763529:android:698281937f84226b9c3e58",
+        "android_client_info": {
+          "package_name": "com.communisolve.myuber"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1080008763529-6n8jieji56iu645pnaquj0opg97p0sle.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGQB1CzjugaNGJ6-pB4SP2UfseeFhoweE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1080008763529-6n8jieji56iu645pnaquj0opg97p0sle.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1080008763529:android:ea99fe039025381a9c3e58",
+        "android_client_info": {
+          "package_name": "com.communisolve.myuberclone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1080008763529-6n8jieji56iu645pnaquj0opg97p0sle.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGQB1CzjugaNGJ6-pB4SP2UfseeFhoweE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1080008763529-6n8jieji56iu645pnaquj0opg97p0sle.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
