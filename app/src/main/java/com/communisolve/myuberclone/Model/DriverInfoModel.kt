@@ -4,6 +4,7 @@ class DriverInfoModel {
      var firstName: String = ""
      var lastName: String = ""
      var phoneNumber = ""
+     val avatar:String=""
      var rating = 0.0
 
      constructor()
