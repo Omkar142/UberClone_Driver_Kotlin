@@ -27,7 +27,7 @@ class StartActivity : AppCompatActivity() {
 
     companion object {
         private val LOGIN_REQUEST_CODE = 7171
-        private val SPLASH_TIME_OUT: Long = 3000 // 1 sec
+        private val SPLASH_TIME_OUT: Long = 1000 // 1 sec
         private const val TAG = "StartActivity"
 
     }
