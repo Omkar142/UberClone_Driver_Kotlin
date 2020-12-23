@@ -5,25 +5,30 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import com.communisolve.myuberclone.Common.Common
 import com.communisolve.myuberclone.Event.UserRegistrationBus
 import com.communisolve.myuberclone.Model.DriverInfoModel
+import com.communisolve.myuberclone.Utils.UserUtils
+import com.communisolve.myuberclone.Utils.toast
 import com.communisolve.myuberclone.ui.UserRegisterDialog.AlertDialogFragment
 import com.firebase.ui.auth.AuthMethodPickerLayout
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.iid.FirebaseInstanceId
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import java.util.*
 
+@Suppress("UNUSED_ANONYMOUS_PARAMETER")
 class StartActivity : AppCompatActivity() {
     lateinit var fm: FragmentManager
-     lateinit var alertDialogFragment: AlertDialogFragment
+    lateinit var alertDialogFragment: AlertDialogFragment
 
     companion object {
         private val LOGIN_REQUEST_CODE = 7171
@@ -42,7 +47,7 @@ class StartActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         delaySplashScreen()
-         EventBus.getDefault().register(this)
+        EventBus.getDefault().register(this)
 
     }
 
@@ -70,7 +75,7 @@ class StartActivity : AppCompatActivity() {
 
         fm = getSupportFragmentManager()
         alertDialogFragment =
-                AlertDialogFragment.newInstance("Some Title")!!
+            AlertDialogFragment.newInstance("Some Title")!!
         providers = Arrays.asList(
             AuthUI.IdpConfig.PhoneBuilder().build(),
             AuthUI.IdpConfig.GoogleBuilder().build()
@@ -80,7 +85,25 @@ class StartActivity : AppCompatActivity() {
         listner = FirebaseAuth.AuthStateListener { myFirebaseAuth ->
             val user = myFirebaseAuth.currentUser
             if (user != null) {
+                FirebaseInstanceId.getInstance().instanceId.addOnFailureListener { exception ->
+                    toast(
+                        exception.toString()
+                    )
+                }
+                    .addOnSuccessListener { task ->
+                        UserUtils.updateToken(this, task.token)
+                        Log.d(TAG, "init: ${task.token}")
 
+
+                        FirebaseDatabase.getInstance().getReference(Common.TOKEN_REFERENCE)
+                            .child(FirebaseAuth.getInstance().currentUser!!.uid)
+                            .setValue(task.token)
+                            .addOnFailureListener { exception ->
+                                toast(exception.message.toString())
+                            }.addOnSuccessListener {
+
+                            }
+                    }
                 checkUserFromDatabase()
             } else {
                 showLogInLayout()
@@ -98,12 +121,12 @@ class StartActivity : AppCompatActivity() {
 
                 override fun onDataChange(snapshot: DataSnapshot) {
 
-                    if (snapshot.exists()){
+                    if (snapshot.exists()) {
                         Common.currentUser = snapshot.getValue(DriverInfoModel::class.java)
                         startActivity(Intent(this@StartActivity, HomeActivity::class.java))
                         finish()
 
-                    }else{
+                    } else {
                         alertDialogFragment.show(fm, "fragment_edit_name")
                         alertDialogFragment.isCancelable = false
                     }
