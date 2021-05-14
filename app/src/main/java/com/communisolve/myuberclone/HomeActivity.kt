@@ -37,6 +37,7 @@ import kotlin.collections.HashMap
 
 class HomeActivity : AppCompatActivity() {
 
+
     private lateinit var imageUri: Uri
     lateinit var navView: NavigationView
     lateinit var drawerLayout: DrawerLayout

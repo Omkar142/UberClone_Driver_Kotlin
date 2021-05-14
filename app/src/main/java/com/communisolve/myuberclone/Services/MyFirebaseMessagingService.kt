@@ -15,6 +15,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         if (FirebaseAuth.getInstance().currentUser !=null){
             UserUtils.updateToken(this,token)
         }
+
     }
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)

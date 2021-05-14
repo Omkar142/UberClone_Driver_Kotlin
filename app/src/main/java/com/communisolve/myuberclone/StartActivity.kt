@@ -30,6 +30,7 @@ class StartActivity : AppCompatActivity() {
     lateinit var fm: FragmentManager
     lateinit var alertDialogFragment: AlertDialogFragment
 
+
     companion object {
         private val LOGIN_REQUEST_CODE = 7171
         private val SPLASH_TIME_OUT: Long = 1000 // 1 sec
